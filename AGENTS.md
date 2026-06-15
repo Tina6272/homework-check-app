@@ -6,6 +6,8 @@
 專案用途：學生自主完成作業
 主要工作目錄：G:\我的雲端硬碟\Codex\02專案-作業檢查app
 GitHub repo：https://github.com/Tina6272/homework-check-app
+GitHub Pages：https://tina6272.github.io/homework-check-app/
+repo 可見性：公開
 預設 branch：main
 
 ## Obsidian 對應筆記
@@ -39,13 +41,13 @@ Obsidian vault：G:\我的雲端硬碟\Codex\2nd Brain
 - 需要時 commit + push GitHub
 
 新專案初始化時：
-- 使用 `project-init-sync` 流程；若全域 skill 尚未安裝，依 #07 規格手動補齊缺口
+- 使用 `project-init-sync` 流程
 
 ## 主要檔案
 
 入口檔：README.md
 設定檔：AGENTS.md、.gitignore
-部署位置：GitHub Pages（已要求啟用；GitHub 目前方案不支援此私有 repo 啟用 Pages）
+部署位置：GitHub Pages（main branch / root）
 既有素材：claude對話/、密涅瓦大學思考習慣HC完整清單.md
 
 ## 不要做
@@ -55,4 +57,3 @@ Obsidian vault：G:\我的雲端硬碟\Codex\2nd Brain
 - 不要把 API key、token、密碼寫進 repo
 - 不要儲存學生姓名；正式資料只用座號與班級代號
 - 不要把 Obsidian 駕駛艙複製到專案工作資料夾
-
