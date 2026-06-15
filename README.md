@@ -7,7 +7,7 @@
 - 固定入口規則：`AGENTS.md`
 - 進度與下一步：Obsidian `作業檢查 App/專案工作流程.md`
 - 版本管理：GitHub repo `Tina6272/homework-check-app`
-- 部署目標：GitHub Pages
+- 部署目標：GitHub Pages（私有 repo 目前受 GitHub 方案限制，尚未啟用）
 - 資料服務：Firebase（project id 待設定）
 
 ## 既有資料
@@ -20,3 +20,4 @@
 - 不提交 `.env`、API key、token、密碼或 Firebase Admin 憑證
 - 學生資料只使用座號與班級代號，不存真名
 - `.codex/` 與其他本機 AI agent 設定不納入 Git
+

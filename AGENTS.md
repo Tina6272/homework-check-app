@@ -45,7 +45,7 @@ Obsidian vault：G:\我的雲端硬碟\Codex\2nd Brain
 
 入口檔：README.md
 設定檔：AGENTS.md、.gitignore
-部署位置：GitHub Pages（main branch / root，待啟用後確認）
+部署位置：GitHub Pages（已要求啟用；GitHub 目前方案不支援此私有 repo 啟用 Pages）
 既有素材：claude對話/、密涅瓦大學思考習慣HC完整清單.md
 
 ## 不要做
@@ -55,3 +55,4 @@ Obsidian vault：G:\我的雲端硬碟\Codex\2nd Brain
 - 不要把 API key、token、密碼寫進 repo
 - 不要儲存學生姓名；正式資料只用座號與班級代號
 - 不要把 Obsidian 駕駛艙複製到專案工作資料夾
+
