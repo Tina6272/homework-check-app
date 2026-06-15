@@ -1,0 +1,143 @@
+
+<h2 class="sr-only">AI Agent 工具建構課後班 App 的可行性、費用與路徑比較</h2>
+<style>
+  .root { padding: 1.5rem 0; font-family: var(--font-sans); }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); letter-spacing: 0.05em; margin: 0 0 10px; }
+  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+  .tool-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 0.85rem 1rem; }
+  .tool-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .tool-tag { display: inline-block; font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 99px; margin-bottom: 8px; }
+  .tag-free { background: #E1F5EE; color: #085041; }
+  .tag-paid { background: #FAEEDA; color: #633806; }
+  .tag-web { background: #EEEDFE; color: #3C3489; }
+  .tag-mobile { background: #E6F1FB; color: #0C447C; }
+  @media (prefers-color-scheme: dark) {
+    .tag-free  { background: #04342C; color: #9FE1CB; }
+    .tag-paid  { background: #412402; color: #FAC775; }
+    .tag-web   { background: #26215C; color: #CECBF6; }
+    .tag-mobile{ background: #042C53; color: #85B7EB; }
+  }
+  .tool-desc { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; }
+  .tool-price { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-top: 6px; }
+  .tool-limit { font-size: 11px; color: var(--color-text-tertiary); }
+  .row { display: flex; gap: 8px; align-items: baseline; margin-bottom: 6px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .dot-ok   { background: #1D9E75; }
+  .dot-warn { background: #BA7517; }
+  .dot-no   { background: #E24B4A; }
+  .row-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.6; }
+  .path-block { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
+  .path-card { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 0.85rem 1rem; }
+  .path-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+  .path-cost { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
+  .path-note { font-size: 11px; color: var(--color-text-secondary); }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.25rem 0; }
+  .verdict { background: var(--color-background-secondary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .verdict-title { font-size: 14px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 8px; }
+  .verdict-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+  button { cursor: pointer; font-size: 13px; margin-top: 10px; }
+</style>
+
+<div class="root">
+
+  <!-- 1. 能否完成 App -->
+  <div class="section-label">能否用 AI Agent 完成這款 App？</div>
+  <div class="card">
+    <div class="row"><div class="dot dot-ok"></div><div class="row-text">網頁版（Web App）── 完全可行。Bolt.new、Lovable、Replit Agent 均可從文字描述直接產出含資料庫、登入、即時同步的完整 Web App，老師端 Dashboard 與家長端通知皆可在網頁實現。</div></div>
+    <div class="row"><div class="dot dot-warn"></div><div class="row-text">iOS / Android 原生 App── 有條件可行。需使用 FlutterFlow 或 Adalo，AI 輔助建構，但需手動設定後端與推播通知，發布至 App Store 需額外費用（Apple 開發者帳號 $99/年）。</div></div>
+    <div class="row"><div class="dot dot-warn"></div><div class="row-text">AI 辨識作業圖片── 可整合，但需額外 API。Google Vision API 或 Mathpix 可辨識手寫作業，免費額度有限，大量使用需付費。</div></div>
+    <div class="row"><div class="dot dot-no"></div><div class="row-text">零費用完成「完整成品」── 不現實。免費工具可做出原型與 MVP，但正式上線（自訂網域、多班級資料、推播通知）仍需基本月費。</div></div>
+  </div>
+
+  <!-- 2. 工具比較 -->
+  <div class="section-label">主要 AI Agent 工具比較（2026）</div>
+  <div class="card-grid">
+
+    <div class="tool-card">
+      <div class="tool-name">Bolt.new</div>
+      <span class="tool-tag tag-web">網頁</span>
+      <span class="tool-tag tag-free">最慷慨免費</span>
+      <div class="tool-desc">從文字提示直接產出 React + 資料庫全端 Web App，無需任何程式知識。</div>
+      <div class="tool-price">免費：每月 100 萬 tokens</div>
+      <div class="tool-limit">付費：$25/月（1,000 萬 tokens）</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">Lovable</div>
+      <span class="tool-tag tag-web">網頁</span>
+      <span class="tool-tag tag-paid">介面最精美</span>
+      <div class="tool-desc">整合 Supabase 後端，UI 最接近商業產品水準，含 GitHub 同步。</div>
+      <div class="tool-price">免費：每月 30 次（5/天）</div>
+      <div class="tool-limit">付費：$25/月（100 次 credits）</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">Replit Agent</div>
+      <span class="tool-tag tag-web">網頁</span>
+      <span class="tool-tag tag-paid">最自主</span>
+      <div class="tool-desc">30+ 服務整合，可自動測試、偵錯、部署，適合較複雜邏輯。</div>
+      <div class="tool-price">免費：每日少量 Agent 額度</div>
+      <div class="tool-limit">付費：$20/月（含 $25 使用額度）</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">FlutterFlow</div>
+      <span class="tool-tag tag-mobile">原生 App</span>
+      <span class="tool-tag tag-paid">iOS／Android</span>
+      <div class="tool-desc">可發布至 Apple Store 與 Google Play，需配合 Firebase 後端。有視覺化拖拉介面。</div>
+      <div class="tool-price">免費：可建構但不能上架</div>
+      <div class="tool-limit">付費：$39/月（Basic，可發布）</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">Adalo</div>
+      <span class="tool-tag tag-mobile">原生 App</span>
+      <span class="tool-tag tag-paid">最易上手</span>
+      <div class="tool-desc">號稱「像 PowerPoint 一樣簡單」，含內建資料庫，可一鍵發布 iOS ／ Android。</div>
+      <div class="tool-price">免費：可預覽，不能上架</div>
+      <div class="tool-limit">付費：$45/月（含上架功能）</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">Claude Code / Cursor</div>
+      <span class="tool-tag tag-web">全端</span>
+      <span class="tool-tag tag-paid">開發者專用</span>
+      <div class="tool-desc">需有基本程式概念，自由度最高，適合需要客製化複雜功能的情境。</div>
+      <div class="tool-price">Cursor：$20/月</div>
+      <div class="tool-limit">Claude Code：需 Claude Pro/Max</div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- 3. 費用路徑 -->
+  <div class="section-label">費用路徑：兩條方向</div>
+  <div class="path-block">
+    <div class="path-card">
+      <div class="path-title">路徑 A ── 網頁版 MVP（推薦起點）</div>
+      <div class="path-cost" style="color:#0F6E56">$0 ～ $25／月</div>
+      <div class="path-note">Bolt.new 免費版產出原型 → 付費 $25/月 正式上線<br>老師端、家長端均為網頁，學生端可加入 PWA（可存在手機桌面）<br>AI 辨識使用 Google Vision API 免費額度（每月 1,000 次）</div>
+    </div>
+    <div class="path-card">
+      <div class="path-title">路徑 B ── 原生 App（完整成品）</div>
+      <div class="path-cost" style="color:#854F0B">$64 ～ $150／月</div>
+      <div class="path-note">FlutterFlow $39/月 + Firebase $25/月 起跳<br>Apple 開發者帳號 $99/年（另計）<br>適合確認需求穩定後、準備正式推廣時採用</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 4. 最終建議 -->
+  <div class="verdict">
+    <div class="verdict-title">建議路線</div>
+    <div class="verdict-text">
+      第一階段：用 <strong>Bolt.new 免費版</strong>建立網頁原型，在 1-2 個班級試用，驗證五步驟流程是否真正減輕老師負擔。這個階段費用為 <strong>$0</strong>。<br><br>
+      第二階段：確認流程有效後，升級 Bolt.new（$25/月）或改用 FlutterFlow（$39/月）做原生 App，申請 Apple 開發者帳號，正式上架。月費約 <strong>$25 ～ $64</strong>。<br><br>
+      注意：「免費就能完成成品」是市場常見的誤導。免費工具可以完成 <strong>原型與內部測試版</strong>，但凡涉及自訂網域、多用戶即時資料、推播通知、App Store 上架，都需要基本月費。
+    </div>
+    <button onclick="sendPrompt('我想從 Bolt.new 免費版開始，請幫我寫出第一個提示詞來建立課後班作業 App 的原型')">用 Bolt.new 開始建原型 ↗</button>
+  </div>
+
+</div>

@@ -1,0 +1,166 @@
+
+<h2 class="sr-only">密涅瓦思考習慣應用於課後班三大痛點的解決方案</h2>
+
+<style>
+  .root { padding: 1.5rem 0; font-family: var(--font-sans); }
+  .pain-block { margin-bottom: 2.5rem; border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
+  .pain-header { padding: 1rem 1.25rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .pain-label { font-size: 12px; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .pain-title { font-size: 16px; font-weight: 500; color: var(--color-text-primary); margin: 0; }
+  .hc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; }
+  .hc-cell { padding: 0.85rem 1rem; border-right: 0.5px solid var(--color-border-tertiary); border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .hc-cell:last-child { border-right: none; }
+  .hc-cat { font-size: 11px; font-weight: 500; margin-bottom: 4px; }
+  .hc-name { font-size: 13px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 4px; }
+  .hc-tag { font-size: 11px; color: var(--color-text-secondary); }
+  .solution-body { padding: 1rem 1.25rem; }
+  .solution-title { font-size: 13px; font-weight: 500; color: var(--color-text-secondary); margin-bottom: 0.6rem; }
+  .steps { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .step { font-size: 13px; color: var(--color-text-primary); padding-left: 1.25rem; position: relative; line-height: 1.6; }
+  .step::before { content: attr(data-n); position: absolute; left: 0; font-weight: 500; color: var(--color-text-secondary); }
+
+  .p1 .pain-header { background: #EEEDFE; }
+  .p1 .pain-label { color: #534AB7; }
+  .p1 .hc-cat { color: #534AB7; }
+
+  .p2 .pain-header { background: #E1F5EE; }
+  .p2 .pain-label { color: #0F6E56; }
+  .p2 .hc-cat { color: #0F6E56; }
+
+  .p3 .pain-header { background: #FAEEDA; }
+  .p3 .pain-label { color: #854F0B; }
+  .p3 .hc-cat { color: #854F0B; }
+
+  @media (prefers-color-scheme: dark) {
+    .p1 .pain-header { background: #26215C; }
+    .p1 .pain-label { color: #AFA9EC; }
+    .p1 .hc-cat { color: #AFA9EC; }
+    .p2 .pain-header { background: #04342C; }
+    .p2 .pain-label { color: #5DCAA5; }
+    .p2 .hc-cat { color: #5DCAA5; }
+    .p3 .pain-header { background: #412402; }
+    .p3 .pain-label { color: #FAC775; }
+    .p3 .hc-cat { color: #FAC775; }
+  }
+</style>
+
+<div class="root">
+
+  <!-- 痛點一 -->
+  <div class="pain-block p1">
+    <div class="pain-header">
+      <div class="pain-label">痛點 01 ── 班級秩序混亂</div>
+      <div class="pain-title">如何有效地進行班級經營？</div>
+    </div>
+    <div class="hc-grid">
+      <div class="hc-cell">
+        <div class="hc-cat">批判性思考</div>
+        <div class="hc-name">識別影響決策的誘因</div>
+        <div class="hc-tag">#payoffs</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">創意思考</div>
+        <div class="hc-name">迭代設計思維</div>
+        <div class="hc-tag">#design_thinking</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效溝通</div>
+        <div class="hc-name">依情境與受眾調整表達</div>
+        <div class="hc-tag">#audience</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效互動</div>
+        <div class="hc-name">減緩從眾效應的影響</div>
+        <div class="hc-tag">#conformity</div>
+      </div>
+    </div>
+    <div class="solution-body">
+      <div class="solution-title">▸ 可行解決方案</div>
+      <ul class="steps">
+        <li class="step" data-n="①">【批判】分析哪些誘因（貼紙、加分、自由時間）能有效促進學生合作，哪些會助長破壞行為，找出班級秩序失控的真正原因。</li>
+        <li class="step" data-n="②">【創意】設計「班規共創工作坊」，讓學生參與訂定規則，再以週為單位迭代修正，使班規成為學生自願遵守的契約。</li>
+        <li class="step" data-n="③">【溝通】針對不同氣質的學生（衝動型、焦慮型、被動型）調整說話語氣與指令方式，避免一體適用的訓誡語言。</li>
+        <li class="step" data-n="④">【互動】培養正向同儕示範，善用「從眾心理」讓守秩序的學生成為班級的隱性規範，而非只靠老師施壓管控。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 痛點二 -->
+  <div class="pain-block p2">
+    <div class="pain-header">
+      <div class="pain-label">痛點 02 ── 作業動機低落</div>
+      <div class="pain-title">學生拖延、無法自我負責</div>
+    </div>
+    <div class="hc-grid">
+      <div class="hc-cell">
+        <div class="hc-cat">批判性思考</div>
+        <div class="hc-name">分析時間折扣的影響</div>
+        <div class="hc-tag">#discounting</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">創意思考</div>
+        <div class="hc-name">應用有效策略進行自學</div>
+        <div class="hc-tag">#self_learning</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效溝通</div>
+        <div class="hc-name">形成明確的核心論點</div>
+        <div class="hc-tag">#thesis</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效互動</div>
+        <div class="hc-name">履行承諾、主動積極、承擔責任</div>
+        <div class="hc-tag">#responsibility</div>
+      </div>
+    </div>
+    <div class="solution-body">
+      <div class="solution-title">▸ 可行解決方案</div>
+      <ul class="steps">
+        <li class="step" data-n="①">【批判】讓學生理解「時間折扣」──人天生偏好立即滿足而非延遲獎勵。引導學生將長作業拆成今日立即可完成的小段，降低拖延的心理阻力。</li>
+        <li class="step" data-n="②">【創意】與學生共同設計「個人學習儀式」（例如：到座位先喝一口水、翻開聯絡簿、設定倒計時），建立進入專注狀態的觸發機制。</li>
+        <li class="step" data-n="③">【溝通】引導學生在開始作業前口頭或書面說出「今天我要完成______，因為______」，訓練學生為自己的行動建立清楚的意圖陳述。</li>
+        <li class="step" data-n="④">【互動】建立「完成承諾卡」制度，學生自訂今日目標並簽名，完成後自我核對，將責任的主體從老師轉移至學生本身。</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 痛點三 -->
+  <div class="pain-block p3">
+    <div class="pain-header">
+      <div class="pain-label">痛點 03 ── 完成速度差異大</div>
+      <div class="pain-title">老師時間被作業檢查佔據，無法個別關注</div>
+    </div>
+    <div class="hc-grid">
+      <div class="hc-cell">
+        <div class="hc-cat">批判性思考</div>
+        <div class="hc-name">拆解問題成可處理的組成</div>
+        <div class="hc-tag">#break_it_down</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">創意思考</div>
+        <div class="hc-name">找出限制條件並加以運用</div>
+        <div class="hc-tag">#constraints</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效溝通</div>
+        <div class="hc-name">有效組織溝通內容的結構</div>
+        <div class="hc-tag">#organization</div>
+      </div>
+      <div class="hc-cell">
+        <div class="hc-cat">有效互動</div>
+        <div class="hc-name">依任務適當分配團隊職責</div>
+        <div class="hc-tag">#team_roles</div>
+      </div>
+    </div>
+    <div class="solution-body">
+      <div class="solution-title">▸ 可行解決方案</div>
+      <ul class="steps">
+        <li class="step" data-n="①">【批判】將「作業時間」拆解為三個明確區段：獨立作業 → 自我檢查 → 延伸活動，讓快完成的學生有路可走，不擠壓老師的時間。</li>
+        <li class="step" data-n="②">【創意】接受「老師時間有限」為不可改變的限制條件，設計「小老師制度」或「完成格」──先完成的學生成為同伴引導者，在老師巡視之前發揮作用。</li>
+        <li class="step" data-n="③">【溝通】建立視覺化的「作業流程看板」（待做 → 進行中 → 待批改 → 完成），讓學生一眼看懂自己在哪個階段，減少學生詢問老師「我做完了怎麼辦」的頻率。</li>
+        <li class="step" data-n="④">【互動】在班級中建立「作業小組」，每組由速度不同的學生組成，快者協助慢者核對，老師只需重點巡視卡關學生，大幅釋放個別關注的空間。</li>
+      </ul>
+    </div>
+  </div>
+
+</div>

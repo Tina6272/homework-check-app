@@ -1,0 +1,210 @@
+
+<h2 class="sr-only">國小作業正確資料庫建立流程與 AI 即時回饋機制完整說明</h2>
+<style>
+  .root{padding:1.5rem 0;font-family:var(--font-sans)}
+  .sec-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.05em;margin:0 0 10px}
+  .card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+  .flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-bottom:1.5rem;border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);overflow:hidden}
+  .flow-cell{padding:.85rem .7rem;border-right:.5px solid var(--color-border-tertiary);text-align:center}
+  .flow-cell:last-child{border-right:none}
+  .flow-num{font-size:18px;font-weight:500;margin-bottom:4px}
+  .flow-title{font-size:12px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+  .flow-sub{font-size:11px;color:var(--color-text-secondary);line-height:1.5}
+  .n1{color:#534AB7} .n2{color:#0F6E56} .n3{color:#185FA5} .n4{color:#854F0B} .n5{color:#993C1D}
+  .grade-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.5rem}
+  .grade-card{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.85rem 1rem}
+  .grade-title{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px}
+  .grade-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:99px;margin-bottom:6px}
+  .g-low{background:#FBEAF0;color:#72243E} .g-mid{background:#E1F5EE;color:#085041} .g-high{background:#EEEDFE;color:#3C3489}
+  @media(prefers-color-scheme:dark){
+    .g-low{background:#4B1528;color:#F4C0D1}.g-mid{background:#04342C;color:#9FE1CB}.g-high{background:#26215C;color:#CECBF6}
+  }
+  .grade-item{font-size:12px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:3px}
+  .tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+  .tool-card{border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:.75rem .9rem}
+  .tool-name{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
+  .tool-role{font-size:11px;color:var(--color-text-secondary);margin-bottom:5px}
+  .tool-price{font-size:12px;font-weight:500}
+  .tp-free{color:#0F6E56} .tp-paid{color:#854F0B}
+  .cost-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
+  .cost-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:.75rem}
+  .cost-label{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px}
+  .cost-val{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+  .cost-note{font-size:10px;color:var(--color-text-tertiary);margin-top:2px}
+  .row{display:flex;gap:8px;align-items:baseline;margin-bottom:6px}
+  .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:6px}
+  .dok{background:#1D9E75} .dwarn{background:#BA7517} .dno{background:#E24B4A}
+  .row-text{font-size:13px;color:var(--color-text-primary);line-height:1.6}
+  .divider{border:none;border-top:.5px solid var(--color-border-tertiary);margin:1.25rem 0}
+  button{cursor:pointer;font-size:13px;margin-top:10px}
+</style>
+
+<div class="root">
+
+  <!-- 核心流程 -->
+  <div class="sec-label">學生拍照 → AI 即時回饋 五步驟流程</div>
+  <div class="flow-grid">
+    <div class="flow-cell">
+      <div class="flow-num n1">①</div>
+      <div class="flow-title">拍照上傳</div>
+      <div class="flow-sub">學生對作業拍照，App 自動調整角度、亮度</div>
+    </div>
+    <div class="flow-cell">
+      <div class="flow-num n2">②</div>
+      <div class="flow-title">OCR 辨識</div>
+      <div class="flow-sub">Google Vision API 擷取手寫文字與數字</div>
+    </div>
+    <div class="flow-cell">
+      <div class="flow-num n3">③</div>
+      <div class="flow-title">對比答案庫</div>
+      <div class="flow-sub">與正確答案資料庫逐題比對，標記對錯</div>
+    </div>
+    <div class="flow-cell">
+      <div class="flow-num n4">④</div>
+      <div class="flow-title">AI 生成回饋</div>
+      <div class="flow-sub">Claude API 依年段生成引導語而非直接給答案</div>
+    </div>
+    <div class="flow-cell">
+      <div class="flow-num n5">⑤</div>
+      <div class="flow-title">訂正再拍</div>
+      <div class="flow-sub">學生訂正後重新拍照，確認訂正完成才解鎖</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 三階段資料庫差異 -->
+  <div class="sec-label">三個年段的答案資料庫設計差異</div>
+  <div class="grade-grid">
+    <div class="grade-card">
+      <div class="grade-title">低年級（1-2 年級）</div>
+      <span class="grade-tag g-low">結構最固定</span>
+      <div class="grade-item">• 國語：注音符號、筆畫、生字描紅</div>
+      <div class="grade-item">• 數學：10 以內加減法、數字書寫</div>
+      <div class="grade-item">• 答案唯一、格式固定，OCR 辨識最容易</div>
+      <div class="grade-item">• AI 回饋以圖示 + 短句為主</div>
+      <div class="grade-item">• 資料庫規模：約 3,000 題</div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-title">中年級（3-4 年級）</div>
+      <span class="grade-tag g-mid">半開放型</span>
+      <div class="grade-item">• 國語：造句、段落填空</div>
+      <div class="grade-item">• 數學：乘除法、應用題列式</div>
+      <div class="grade-item">• 部分題目有多種正確寫法，需模糊比對</div>
+      <div class="grade-item">• AI 回饋需判斷「過程對錯」而非僅答案</div>
+      <div class="grade-item">• 資料庫規模：約 8,000 題</div>
+    </div>
+    <div class="grade-card">
+      <div class="grade-title">高年級（5-6 年級）</div>
+      <span class="grade-tag g-high">開放 + 評分標準</span>
+      <div class="grade-item">• 國語：閱讀測驗、作文評分向度</div>
+      <div class="grade-item">• 數學：分數、比例、面積多步驟解題</div>
+      <div class="grade-item">• 需評分標準（Rubric）而非單一答案</div>
+      <div class="grade-item">• AI 回饋以引導問句 + 步驟提示為主</div>
+      <div class="grade-item">• 資料庫規模：約 15,000 題</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 工具清單 -->
+  <div class="sec-label">建立所需工具</div>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-name">Google Vision API</div>
+      <div class="tool-role">手寫 OCR 辨識主力</div>
+      <div class="tool-price tp-free">免費：1,000 張/月</div>
+      <div class="tool-role">付費：$1.50 / 1,000 張</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Claude Haiku 4.5 API</div>
+      <div class="tool-role">AI 回饋語句生成（最省成本）</div>
+      <div class="tool-price tp-paid">$0.80 / 百萬 input tokens</div>
+      <div class="tool-role">每次回饋約 $0.001</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Firebase / Supabase</div>
+      <div class="tool-role">答案資料庫 + 學生資料即時同步</div>
+      <div class="tool-price tp-free">免費方案可支撐小班規模</div>
+      <div class="tool-role">付費：$25/月起</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Google Sheets / Airtable</div>
+      <div class="tool-role">教師維護答案庫的介面</div>
+      <div class="tool-price tp-free">免費（Google Sheets）</div>
+      <div class="tool-role">無需程式知識即可操作</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Bolt.new / Lovable</div>
+      <div class="tool-role">App 前端 + 後台建構</div>
+      <div class="tool-price tp-free">免費原型 / $25/月上線</div>
+      <div class="tool-role">結合 API 串接完成批改流程</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-name">Mathpix（選配）</div>
+      <div class="tool-role">數學算式專用辨識，精度高於 Vision</div>
+      <div class="tool-price tp-paid">免費：20 題/月</div>
+      <div class="tool-role">付費：$4.99/月（2,000 題）</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 費用試算 -->
+  <div class="sec-label">月費試算（以 1 班 30 人、每日 30 張作業圖為例）</div>
+  <div class="cost-grid">
+    <div class="cost-card">
+      <div class="cost-label">Google Vision OCR</div>
+      <div class="cost-val tp-free" style="color:#0F6E56">$0</div>
+      <div class="cost-note">900 張/月 ＜ 免費額度 1,000 張</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-label">Claude Haiku API 回饋</div>
+      <div class="cost-val" style="color:#854F0B">≈ $1</div>
+      <div class="cost-note">900 次 × $0.001 / 次</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-label">Firebase 資料庫</div>
+      <div class="cost-val" style="color:#0F6E56">$0</div>
+      <div class="cost-note">免費方案（Spark）足夠小班</div>
+    </div>
+    <div class="cost-card">
+      <div class="cost-label">App 平台（Bolt Pro）</div>
+      <div class="cost-val" style="color:#854F0B">$25</div>
+      <div class="cost-note">正式上線月費</div>
+    </div>
+  </div>
+  <div class="card" style="background:var(--color-background-secondary);border:none">
+    <div style="font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px">單班月費合計：約 $26 美元（約 NT$850）</div>
+    <div style="font-size:12px;color:var(--color-text-secondary);line-height:1.7">
+      3 班同時使用：約 $50/月（NT$1,650）── Vision 免費額度超出後每月加 $2.25<br>
+      5 班以上：建議升級 Firebase Blaze 方案（按用量計費）+ Vision 付費方案，月費約 $60-80
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 建立步驟 -->
+  <div class="sec-label">資料庫建立步驟（由易到難，可分階段執行）</div>
+  <div class="card">
+    <div class="row"><div class="dot dok"></div><div class="row-text">第一步（第 1-2 週）── 蒐集教材：取得課後班使用的各年級國語、數學作業本目錄，以 Google Sheets 建立「科目 ／ 年段 ／ 題號 ／ 正確答案 ／ 常見錯誤」五欄資料表，此為答案庫的核心骨架。</div></div>
+    <div class="row"><div class="dot dok"></div><div class="row-text">第二步（第 3-4 週）── 錄入低年級題庫：優先完成 1-2 年級，因題型固定、答案唯一，每班一學期約 300-500 題，一位老師每天錄入 50 題，約兩週可完成基礎庫。</div></div>
+    <div class="row"><div class="dot dok"></div><div class="row-text">第三步（第 5-8 週）── 設定 AI 回饋模板：針對「答對、答錯、空白未作答」三種狀態，各年段各寫 3-5 種引導語模板（例如低年級錯誤 → 「再看一次這一題的第幾行！」），存入資料庫供 Claude API 呼叫。</div></div>
+    <div class="row"><div class="dot dwarn"></div><div class="row-text">第四步（第 9-12 週）── 建立中高年級模糊比對規則：造句、應用題等開放題需設定「關鍵詞清單」或「評分向度」，OCR 辨識後由 Claude 判斷是否符合，這是技術難度最高的部分，初期建議人工輔助。</div></div>
+    <div class="row"><div class="dot dwarn"></div><div class="row-text">第五步（持續進行）── 錯誤累積回饋：當 AI 誤判時，老師可在系統中「標記 AI 錯誤」，錯誤資料會累積為訓練樣本，每學期更新一次答案庫，辨識準確度會隨時間持續提升。</div></div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 限制說明 -->
+  <div class="sec-label">誠實評估：這套流程的限制</div>
+  <div class="card">
+    <div class="row"><div class="dot dno"></div><div class="row-text">OCR 對潦草字跡辨識率下降：Google Vision 對整齊手寫達 92%，但對低年級不穩定筆跡可能降至 75-80%，初期仍需老師人工確認部分結果。</div></div>
+    <div class="row"><div class="dot dno"></div><div class="row-text">開放題無法完全自動化：國語造句、閱讀測驗心得等題型，AI 只能輔助提示，最終仍需老師判斷，但可將確認時間從「每題 2 分鐘」縮短至「每題 15 秒」。</div></div>
+    <div class="row"><div class="dot dwarn"></div><div class="row-text">資料庫需持續維護：每學期教材更換時需同步更新題庫，建議指定一位老師每週花 30 分鐘維護，這是讓系統長期運作的關鍵。</div></div>
+    <div class="row"><div class="dot dok"></div><div class="row-text">最有價值的場景：選擇題、填空題、計算題（數學）── 這三類題型自動化批改準確率高，且佔課後班作業的 70% 以上，足以大幅減輕老師工作量。</div></div>
+  </div>
+
+  <button onclick="sendPrompt('請幫我設計一份 Google Sheets 答案庫模板，包含科目、年段、題號、標準答案、常見錯誤、AI 回饋語句六個欄位，以一年級國語作業為例填入範例資料')">產生答案庫 Google Sheets 模板 ↗</button>
+
+</div>
