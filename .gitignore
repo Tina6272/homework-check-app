@@ -8,6 +8,7 @@ Thumbs.db
 # 敏感資料
 .env
 .env.*
+!.env.example
 *.key
 credentials.*
 secrets.*
@@ -18,7 +19,6 @@ secrets.*
 
 # Node.js
 node_modules/
-package-lock.json
 
 # 建置輸出
 dist/

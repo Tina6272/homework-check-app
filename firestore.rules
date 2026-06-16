@@ -1,0 +1,49 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function hasRole(role) {
+      return isSignedIn() && request.auth.token.role == role;
+    }
+
+    function isClassMember(classCode) {
+      return isSignedIn() && request.auth.token.classCode == classCode;
+    }
+
+    match /classes/{classCode} {
+      allow read: if isClassMember(classCode) || hasRole("teacher");
+      allow write: if hasRole("teacher");
+
+      match /assignments/{assignmentId} {
+        allow read: if isClassMember(classCode) || hasRole("teacher") || hasRole("parent");
+        allow write: if hasRole("teacher");
+      }
+
+      match /students/{studentSeat} {
+        allow read: if isClassMember(classCode) || hasRole("teacher");
+        allow create, update: if hasRole("teacher");
+        allow delete: if false;
+      }
+
+      match /submissions/{submissionId} {
+        allow read: if isClassMember(classCode) || hasRole("teacher") || hasRole("parent");
+        allow create: if isClassMember(classCode)
+          && request.resource.data.classCode == classCode
+          && request.resource.data.studentSeat is string
+          && request.resource.data.studentSeat.size() <= 4
+          && !("studentName" in request.resource.data);
+        allow update: if hasRole("teacher")
+          || (
+            isClassMember(classCode)
+            && resource.data.studentSeat == request.resource.data.studentSeat
+            && !("studentName" in request.resource.data)
+          );
+        allow delete: if hasRole("teacher");
+      }
+    }
+  }
+}

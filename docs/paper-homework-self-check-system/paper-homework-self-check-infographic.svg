@@ -1,0 +1,155 @@
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">紙本作業自主訂正與風險抽查系統資訊圖表</title>
+  <desc id="desc">說明學生端、老師端、家長端、題庫輔助、防抄答案、防胡亂檢查與分階段導入路線。</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f7f2; }
+      .title { font: 700 34px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #171717; }
+      .subtitle { font: 400 18px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #4a4a44; }
+      .section-title { font: 700 22px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #171717; }
+      .card-title { font: 700 18px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #1f2933; }
+      .body { font: 400 15px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #30302c; }
+      .small { font: 400 13px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #4f4f49; }
+      .tag { font: 700 13px "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif; fill: #ffffff; }
+      .card { fill: #ffffff; stroke: #d9d8ce; stroke-width: 1.2; rx: 14; }
+      .student { fill: #e6f1fb; stroke: #2b6ea6; }
+      .teacher { fill: #e3f3ed; stroke: #0f766e; }
+      .parent { fill: #f8ead5; stroke: #b7791f; }
+      .guard { fill: #f8e3eb; stroke: #b83264; }
+      .stage { fill: #ede9fe; stroke: #6d5bd0; }
+      .arrow { stroke: #6f6d66; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #c3c1b8; stroke-width: 1.4; stroke-dasharray: 6 7; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 1 1 L 8 5 L 1 9" fill="none" stroke="#6f6d66" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="1600"/>
+
+  <text class="title" x="600" y="72" text-anchor="middle">紙本作業自主訂正與風險抽查系統</text>
+  <text class="subtitle" x="600" y="108" text-anchor="middle">不是取代老師批改，而是把紙本作業的完成、自查、訂正與抽查變成可追蹤流程</text>
+
+  <rect class="card" x="60" y="145" width="1080" height="105"/>
+  <text class="section-title" x="90" y="185">核心定位</text>
+  <text class="body" x="90" y="218">學生先完成紙本作業，App 引導自查、標記不會題、題庫核對與訂正；老師端看風險訊號做抽查，家長端只看進度與自主習慣。</text>
+
+  <text class="section-title" x="60" y="305">三端角色</text>
+  <rect class="card student" x="60" y="330" width="340" height="155" rx="14"/>
+  <text class="card-title" x="90" y="368">學生端</text>
+  <text class="body" x="90" y="400">接收今日作業、開始計時</text>
+  <text class="body" x="90" y="428">完成紙本後逐項自查</text>
+  <text class="body" x="90" y="456">標記不會 / 不確定題號</text>
+
+  <rect class="card teacher" x="430" y="330" width="340" height="155" rx="14"/>
+  <text class="card-title" x="460" y="368">老師端</text>
+  <text class="body" x="460" y="400">建立作業模板，多班派發</text>
+  <text class="body" x="460" y="428">查看風險名單與卡關題號</text>
+  <text class="body" x="460" y="456">抽查、退回訂正、調整協助</text>
+
+  <rect class="card parent" x="800" y="330" width="340" height="155" rx="14"/>
+  <text class="card-title" x="830" y="368">家長端</text>
+  <text class="body" x="830" y="400">查看今日完成狀態</text>
+  <text class="body" x="830" y="428">理解自查、訂正、卡關情形</text>
+  <text class="body" x="830" y="456">只協助陪伴，不取代批改</text>
+
+  <text class="section-title" x="60" y="555">學生自主流程</text>
+  <g>
+    <rect class="card" x="60" y="585" width="150" height="90"/>
+    <text class="tag" x="135" y="615" text-anchor="middle" fill="#ffffff">1</text>
+    <circle cx="88" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="card-title" x="135" y="628" text-anchor="middle">接收作業</text>
+    <text class="small" x="135" y="653" text-anchor="middle">依班級顯示</text>
+    <line class="arrow" x1="210" y1="630" x2="245" y2="630"/>
+
+    <rect class="card" x="245" y="585" width="150" height="90"/>
+    <circle cx="273" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="tag" x="273" y="616" text-anchor="middle">2</text>
+    <text class="card-title" x="320" y="628" text-anchor="middle">開始計時</text>
+    <text class="small" x="320" y="653" text-anchor="middle">建議時間 + 目標</text>
+    <line class="arrow" x1="395" y1="630" x2="430" y2="630"/>
+
+    <rect class="card" x="430" y="585" width="150" height="90"/>
+    <circle cx="458" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="tag" x="458" y="616" text-anchor="middle">3</text>
+    <text class="card-title" x="505" y="628" text-anchor="middle">完成紙本</text>
+    <text class="small" x="505" y="653" text-anchor="middle">不得直接結束</text>
+    <line class="arrow" x1="580" y1="630" x2="615" y2="630"/>
+
+    <rect class="card" x="615" y="585" width="150" height="90"/>
+    <circle cx="643" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="tag" x="643" y="616" text-anchor="middle">4</text>
+    <text class="card-title" x="690" y="628" text-anchor="middle">自查清單</text>
+    <text class="small" x="690" y="653" text-anchor="middle">逐項勾選</text>
+    <line class="arrow" x1="765" y1="630" x2="800" y2="630"/>
+
+    <rect class="card" x="800" y="585" width="150" height="90"/>
+    <circle cx="828" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="tag" x="828" y="616" text-anchor="middle">5</text>
+    <text class="card-title" x="875" y="628" text-anchor="middle">標記題號</text>
+    <text class="small" x="875" y="653" text-anchor="middle">不會 / 不確定</text>
+    <line class="arrow" x1="950" y1="630" x2="985" y2="630"/>
+
+    <rect class="card" x="985" y="585" width="155" height="90"/>
+    <circle cx="1013" cy="611" r="18" fill="#2b6ea6"/>
+    <text class="tag" x="1013" y="616" text-anchor="middle">6</text>
+    <text class="card-title" x="1063" y="628" text-anchor="middle">核對訂正</text>
+    <text class="small" x="1063" y="653" text-anchor="middle">題庫 / 互查 / 抽查</text>
+  </g>
+
+  <text class="section-title" x="60" y="750">作業模板與一鍵派發</text>
+  <rect class="card teacher" x="60" y="780" width="520" height="170" rx="14"/>
+  <text class="card-title" x="90" y="820">老師建立模板</text>
+  <text class="body" x="90" y="852">模板不是每天作業全文，而是可重複使用的作業格式。</text>
+  <text class="small" x="90" y="884">例：數學習作、國語甲本、英文單字、閱讀紀錄。</text>
+  <text class="small" x="90" y="912">欄位：科目、頁碼、題號、建議時間、自查項目、是否互查。</text>
+
+  <rect class="card teacher" x="620" y="780" width="520" height="170" rx="14"/>
+  <text class="card-title" x="650" y="820">一鍵派發到不同班級</text>
+  <text class="body" x="650" y="852">A / B / C 班可使用同一模板，但填入不同頁碼與題號。</text>
+  <text class="small" x="650" y="884">派發後寫入各班 assignments，學生只讀自己的班級資料。</text>
+  <text class="small" x="650" y="912">適合課後班學生來自多個原班級的情境。</text>
+
+  <text class="section-title" x="60" y="1020">防胡亂檢查與防抄答案</text>
+  <rect class="card guard" x="60" y="1050" width="520" height="250" rx="14"/>
+  <text class="card-title" x="90" y="1090">防胡亂檢查</text>
+  <text class="body" x="90" y="1122">1. 自查清單逐項確認，不只一鍵完成</text>
+  <text class="body" x="90" y="1150">2. 學生標記信心：確定 / 不確定 / 需要幫忙</text>
+  <text class="body" x="90" y="1178">3. 標記不會題號，形成卡關統計</text>
+  <text class="body" x="90" y="1206">4. 互查者輸入座號，留下責任鏈</text>
+  <text class="body" x="90" y="1234">5. 完成過快、自查過快、自評異常進風險名單</text>
+
+  <rect class="card guard" x="620" y="1050" width="520" height="250" rx="14"/>
+  <text class="card-title" x="650" y="1090">防抄解答</text>
+  <text class="body" x="650" y="1122">1. 完成紙本與自查後才解鎖答案</text>
+  <text class="body" x="650" y="1150">2. 答案一次只顯示一題，不給整份答案頁</text>
+  <text class="body" x="650" y="1178">3. 隨機抽題先輸入原答案，再顯示答案</text>
+  <text class="body" x="650" y="1206">4. 記錄查看答案時間、題號與後續訂正狀態</text>
+  <text class="body" x="650" y="1234">5. 大量快速看答案但無訂正，老師端提示抽查</text>
+
+  <text class="section-title" x="60" y="1370">分階段導入路線</text>
+  <line class="dash" x1="150" y1="1433" x2="1050" y2="1433"/>
+  <g>
+    <rect class="card stage" x="60" y="1398" width="240" height="115" rx="14"/>
+    <text class="card-title" x="180" y="1432" text-anchor="middle">第 1 階段</text>
+    <text class="body" x="180" y="1462" text-anchor="middle">Firestore-only 流程版</text>
+    <text class="small" x="180" y="1488" text-anchor="middle">不拍照、不 OCR、不 AI</text>
+
+    <rect class="card stage" x="330" y="1398" width="240" height="115" rx="14"/>
+    <text class="card-title" x="450" y="1432" text-anchor="middle">第 2 階段</text>
+    <text class="body" x="450" y="1462" text-anchor="middle">題庫輔助自主訂正</text>
+    <text class="small" x="450" y="1488" text-anchor="middle">單題解鎖 + 抽題輸入</text>
+
+    <rect class="card stage" x="600" y="1398" width="240" height="115" rx="14"/>
+    <text class="card-title" x="720" y="1432" text-anchor="middle">第 3 階段</text>
+    <text class="body" x="720" y="1462" text-anchor="middle">小規模拍照 AI 試辦</text>
+    <text class="small" x="720" y="1488" text-anchor="middle">少數學生 / 少數作業</text>
+
+    <rect class="card stage" x="870" y="1398" width="270" height="115" rx="14"/>
+    <text class="card-title" x="1005" y="1432" text-anchor="middle">第 4 階段</text>
+    <text class="body" x="1005" y="1462" text-anchor="middle">完整 AI 輔助批改版</text>
+    <text class="small" x="1005" y="1488" text-anchor="middle">Storage / OCR / 人工覆核</text>
+  </g>
+
+  <text class="small" x="600" y="1560" text-anchor="middle">設計原則：不增加一份數位作業，而是讓紙本作業的自主完成、訂正與老師抽查更有證據、更省時間。</text>
+</svg>
