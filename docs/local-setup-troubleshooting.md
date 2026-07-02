@@ -1,67 +1,119 @@
-# Local Setup Troubleshooting
+﻿# 本機設定與排錯
 
-## Firebase CLI 重新授權
+這份文件記錄作業檢查 App 專案在 Tina 的 Windows + Google Drive 工作環境中最容易踩到的問題。
 
-目前 Firebase CLI 可看到登入帳號，但憑證已失效。請在本機終端機執行：
+## 不要在 Google Drive 專案資料夾安裝 node_modules
 
-```powershell
-firebase login --reauth
-firebase projects:list
-```
-
-如果瀏覽器跳出 Google 登入畫面，請選擇專案使用的帳號。
-
-目前專案已綁定：
+工作資料夾：
 
 ```text
-teacherstudy-9ce77
+G:\我的雲端硬碟\Codex\02專案-作業檢查app
 ```
 
-Firebase Web App 已建立：
+這個位置是 Google Drive 同步資料夾，不適合直接執行 `npm install`。大量小檔與同步鎖定容易造成：
 
 ```text
-homework-check-app
-1:174357235043:web:a116d03b023c88ec823f56
+TAR_ENTRY_ERROR
+EBADF
+EPERM
+unknown error, write
 ```
 
-Firestore 規則已可部署。Storage 仍需要先到 Firebase Console 啟用：
+正確做法：把必要檔案複製到本機暫存資料夾後再安裝與建置。
+
+最新實測暫存位置：
 
 ```text
-https://console.firebase.google.com/project/teacherstudy-9ce77/storage
+C:\Users\tinad\AppData\Local\Temp\homework-check-preview-20260702
 ```
 
-進入後點選 `Get Started`，完成後再部署 Storage 規則。
+需要同步的檔案與資料夾：
+
+```text
+package.json
+package-lock.json
+index.html
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+vite.config.ts
+src/
+```
 
 ## npm 憑證錯誤
 
-本機 npm 目前連線 registry 時出現：
+如果 npm 出現以下錯誤：
 
 ```text
 UNABLE_TO_VERIFY_LEAF_SIGNATURE
+unable to verify the first certificate
 ```
 
-短期測試可用：
+在同一個 PowerShell session 先設定系統憑證，再重跑：
 
 ```powershell
-npm view react version --strict-ssl=false
+$env:NODE_OPTIONS='--use-system-ca'
+npm.cmd install
+npm.cmd run build
 ```
 
-正式建議是修正 Windows / Node 的憑證信任設定，而不是長期關閉 SSL 驗證。
+## 本機預覽
 
-## npm install 超時
-
-本專案位於 Google Drive 同步資料夾，`node_modules` 會產生大量小檔案，可能被同步程序拖慢或鎖住。
-
-建議處理順序：
-
-1. 暫停 Google Drive 同步。
-2. 關閉可能殘留的 `node.exe` / `npm.cmd` 程序。
-3. 刪除未完成的 `node_modules`。
-4. 重新執行：
+第一階段預覽使用 Vite。若要讓網址固定在專案的 GitHub Pages base path，開啟：
 
 ```powershell
-npm install --strict-ssl=false --no-audit --no-fund
-npm run build
+$env:NODE_OPTIONS='--use-system-ca'
+npm.cmd run dev -- --host 127.0.0.1
 ```
 
-若安裝仍超時，建議把專案暫時複製到非雲端同步路徑完成安裝與建置，再把原始碼同步回此工作區。
+最新實測網址：http://127.0.0.1:5174/homework-check-app/。
+
+常見網址格式：
+
+```text
+http://127.0.0.1:<port>/homework-check-app/
+```
+
+實際 port 以終端機顯示為準；舊紀錄裡的 `5173` 或 `5176` 只能當參考，不能當最新事實。
+
+## Firebase CLI
+
+Firebase project id：
+
+```text
+paper-homework-self-check
+```
+
+Firebase Web App：
+
+```text
+homework-check-app
+1:216321180189:web:2f92206c3397425adc3cf4
+```
+
+在 PowerShell 優先使用 `firebase.cmd`，並搭配系統憑證：
+
+```powershell
+$env:NODE_OPTIONS='--use-system-ca'
+firebase.cmd projects:list
+```
+
+目前第一階段只部署 Hosting + Firestore，不部署 Storage。`firebase.json` 已移除 Storage 部署設定。
+
+## Markdown 與中文路徑
+
+如果終端機或啟動摘要顯示中文路徑亂碼，先讀回原檔確認內容是否正常。不要因為摘要或終端顯示亂碼，就重寫整份文件。
+
+如果原檔已經出現 mojibake / 亂碼，才需要修復原檔。寫入任何 `.md` 後，必須立刻讀回確認中文正常。
+
+## sandbox helper 錯誤
+
+在 Google Drive 工作區使用 `apply_patch`、Node REPL 或一般 sandbox 寫入時，可能出現：
+
+```text
+windows sandbox failed: helper_unknown_error: setup refresh had errors
+```
+
+若是必要文件或專案檔修復，可改用經授權的非沙盒 PowerShell 窄範圍寫入。完成後必須讀回或 build 驗證。
+
+
