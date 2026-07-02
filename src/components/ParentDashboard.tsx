@@ -1,30 +1,16 @@
-import { Clock, HeartHandshake, ShieldCheck } from "lucide-react";
+﻿import { Clock, HeartHandshake, ShieldCheck } from "lucide-react";
 import type { Assignment, StudentStats, Submission } from "../types";
 
-type ParentDashboardProps = {
-  assignments: Assignment[];
-  submissions: Submission[];
-  stats: StudentStats;
-};
+type ParentDashboardProps = { assignments: Assignment[]; submissions: Submission[]; stats: StudentStats };
 
 export function ParentDashboard({ assignments, submissions, stats }: ParentDashboardProps) {
-  const visibleItems = submissions.filter(
-    (submission) => submission.studentSeat === stats.seat && submission.classCode === stats.classCode,
-  );
-
+  const visibleItems = submissions.filter((submission) => submission.studentSeat === stats.seat && submission.classCode === stats.classCode);
   return (
     <section className="workspace single-column">
       <div className="panel board-header">
-        <div>
-          <h2>家長端：透明同步，不製造焦慮</h2>
-          <p>家長只看孩子今天作業走到哪裡、是否有自查訂正、是否需要陪伴協助。</p>
-        </div>
-        <div className="mini-stats">
-          <span><ShieldCheck size={15} />{stats.classCode} 班 {stats.seat} 號</span>
-          <span><HeartHandshake size={15} />連續 {stats.streak} 天</span>
-        </div>
+        <div><h2>家長端：看進度，不代替孩子完成</h2><p>目前先呈現家長需要知道的狀態：是否完成、是否卡住、是否需要鼓勵或提醒。</p></div>
+        <div className="mini-stats"><span><ShieldCheck size={15} />{stats.classCode} 班 {stats.seat} 號</span><span><HeartHandshake size={15} />連續 {stats.streak} 天</span></div>
       </div>
-
       <div className="timeline">
         {visibleItems.map((submission) => {
           const assignment = assignments.find((item) => item.id === submission.assignmentId);
@@ -34,7 +20,7 @@ export function ParentDashboard({ assignments, submissions, stats }: ParentDashb
               <div>
                 <strong>{assignment?.title ?? submission.assignmentId}</strong>
                 <p>{statusText(submission.status)} / 更新：{submission.updatedAt}</p>
-                <p>自查 {submission.checkedItems.length} 項，不確定題號：{submission.uncertainQuestions.join(", ") || "無"}</p>
+                <p>自我檢查 {submission.checkedItems.length} 項，不確定題號：{submission.uncertainQuestions.join(", ") || "無"}</p>
                 <p>家長建議：{parentAdvice(submission)}</p>
               </div>
             </article>
@@ -46,27 +32,12 @@ export function ParentDashboard({ assignments, submissions, stats }: ParentDashb
 }
 
 function statusText(status: Submission["status"]) {
-  const text = {
-    notStarted: "未開始",
-    inProgress: "進行中",
-    selfCheck: "自查中",
-    needsCorrection: "待訂正",
-    teacherReview: "待老師看",
-    done: "已完成",
-    stuck: "卡關",
-  };
-  return text[status];
+  return { notStarted: "尚未開始", inProgress: "進行中", selfCheck: "自我檢查中", needsCorrection: "需要修正", teacherReview: "等待老師確認", done: "已完成", stuck: "卡住了" }[status];
 }
 
 function parentAdvice(submission: Submission) {
-  if (submission.status === "done") {
-    return "確認孩子已把訂正寫回紙本即可，不需要重新批改整份作業。";
-  }
-  if (submission.status === "teacherReview" || submission.stuckQuestions.length > 0) {
-    return "孩子有題目需要協助，請先陪伴，不急著直接給答案。";
-  }
-  if (submission.status === "needsCorrection") {
-    return "請提醒孩子完成訂正流程，再回 App 更新狀態。";
-  }
-  return "請提醒孩子依照 App 步驟完成紙本、自查與訂正。";
+  if (submission.status === "done") return "可以肯定孩子完成了自我檢查，簡短鼓勵即可。";
+  if (submission.status === "teacherReview" || submission.stuckQuestions.length > 0) return "孩子有卡住的地方，請先鼓勵他說出哪一題不懂，再由老師確認。";
+  if (submission.status === "needsCorrection") return "提醒孩子回到題目修正，不需要直接告訴答案。";
+  return "提醒孩子依照 App 步驟完成，不急著催答案。";
 }

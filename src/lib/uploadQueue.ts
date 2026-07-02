@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+﻿import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "./firebase";
 import { compressImage } from "./imageCompression";
 
