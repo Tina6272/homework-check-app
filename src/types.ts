@@ -1,4 +1,4 @@
-export type ViewMode = "student" | "teacher" | "parent";
+﻿export type ViewMode = "student" | "teacher" | "parent";
 
 export type AssignmentStatus = "draft" | "open" | "closed";
 
@@ -30,6 +30,7 @@ export type SubmissionStatus =
   | "selfCheck"
   | "needsCorrection"
   | "teacherReview"
+  | "assistedDone"
   | "done"
   | "stuck";
 

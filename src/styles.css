@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   color: #1d2733;
   background: #eef2f7;
   font-family:
@@ -567,5 +567,501 @@ progress {
 
   .mini-stats {
     justify-content: flex-start;
+  }
+}
+
+.teacher-workspace .panel {
+  overflow: hidden;
+}
+
+.class-form-grid,
+.homework-fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.attendance-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+
+.attendance-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 8px 11px;
+  color: #31556f;
+  background: #e8f2f8;
+  font-weight: 900;
+}
+
+.seat-grid,
+.student-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 10px;
+}
+
+.seat-tile {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 6px;
+  min-height: 56px;
+  border: 1px solid #d7e0ea;
+  border-radius: 8px;
+  padding: 10px;
+  background: #f8fafc;
+}
+
+.seat-tile strong {
+  font-size: 1.05rem;
+}
+
+.seat-tile.leave {
+  border-color: #d8dee8;
+  background: #eef1f5;
+}
+
+.seat-tile.club {
+  border-color: #b9d7f1;
+  background: #edf7ff;
+}
+
+.seat-tile button,
+.homework-row-header button {
+  min-height: 30px;
+  border: 1px solid #c9d5df;
+  border-radius: 6px;
+  padding: 0 8px;
+  color: #31556f;
+  background: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.seat-tile.leave button:first-of-type,
+.seat-tile.club button:last-of-type {
+  color: #ffffff;
+  background: #1d6f9f;
+}
+
+.homework-list,
+.class-dashboard-list {
+  display: grid;
+  gap: 14px;
+}
+
+.homework-row,
+.class-dashboard,
+.student-progress-card {
+  border: 1px solid #d7e0ea;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.homework-row {
+  padding: 14px;
+}
+
+.homework-row-header,
+.class-dashboard-header,
+.student-progress-head,
+.teacher-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.homework-row-header {
+  margin-bottom: 12px;
+}
+
+.homework-row-header h3,
+.class-dashboard h3,
+.student-progress-card p {
+  margin-bottom: 0;
+}
+
+.teacher-actions {
+  flex-wrap: wrap;
+  margin-top: 14px;
+  justify-content: flex-start;
+}
+
+.class-dashboard {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.class-dashboard-header p {
+  max-width: 620px;
+  margin: 6px 0 0;
+  color: #657789;
+  line-height: 1.5;
+}
+
+.student-progress-card {
+  display: grid;
+  gap: 10px;
+  min-height: 156px;
+  padding: 12px;
+}
+
+.student-progress-card.leave {
+  color: #596678;
+  background: #eef1f5;
+}
+
+.student-progress-card.club {
+  border-color: #b9d7f1;
+  background: #edf7ff;
+}
+
+.student-progress-head span {
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #31556f;
+  background: #e8f2f8;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.ratio-bar {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  height: 12px;
+  border-radius: 999px;
+  background: #d9e2ec;
+}
+
+.ratio-bar i {
+  display: block;
+  min-width: 0;
+  height: 100%;
+}
+
+.ratio-bar .done {
+  background: #167a5a;
+}
+
+.ratio-bar .pending {
+  background: #cfd8e3;
+}
+
+.ratio-bar .help {
+  background: #d94b42;
+}
+
+.student-counts {
+  color: #405264;
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.mini-task-list {
+  display: grid;
+  gap: 6px;
+}
+
+.mini-task {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 34px;
+  border: 1px solid #c9d5df;
+  border-radius: 7px;
+  padding: 0 9px;
+  background: #ffffff;
+  color: #31556f;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.mini-task.done,
+.mini-task.assistedDone {
+  border-color: #9dd9bf;
+  color: #0d684c;
+  background: #ecfdf5;
+}
+
+.mini-task.needsHelp {
+  border-color: #f1aca7;
+  color: #9b2c2c;
+  background: #fff1f0;
+}
+
+.status.assistedDone {
+  color: #245b76;
+  background: #dceffc;
+}
+
+@media (max-width: 900px) {
+  .class-form-grid,
+  .homework-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .class-dashboard-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 760px) {
+  .class-form-grid,
+  .homework-fields,
+  .seat-grid,
+  .student-progress-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-actions,
+  .homework-row-header,
+  .student-progress-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+.lesson-picker {
+  display: grid;
+  gap: 8px;
+}
+
+.lesson-multi-select {
+  min-height: 168px;
+  padding: 8px 12px;
+}
+
+.lesson-custom-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 8px;
+}
+
+.lesson-custom-row .choice {
+  min-height: 44px;
+}
+
+.custom-lesson-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.custom-lesson-chips button {
+  border: 1px solid #b9d7f1;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #245b76;
+  background: #edf7ff;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .lesson-custom-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Compact teacher template controls */
+.template-panel .homework-row {
+  padding: 12px 14px;
+}
+
+.template-panel .homework-row-header {
+  margin-bottom: 10px;
+}
+
+.template-panel .homework-fields {
+  align-items: start;
+  gap: 10px 12px;
+}
+
+.template-panel label,
+.template-panel .field-label {
+  gap: 5px;
+  color: #405264;
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.template-panel input,
+.template-panel select {
+  min-height: 40px;
+  padding: 0 11px;
+  background: #ffffff;
+}
+
+.compact-lesson-picker {
+  align-self: start;
+  gap: 5px;
+}
+
+.lesson-combo {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+
+.lesson-entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+
+.lesson-chip-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 40px;
+  border: 1px solid #c9d5df;
+  border-radius: 7px;
+  padding: 5px 7px;
+  background: #ffffff;
+}
+
+.lesson-chip-box button {
+  border: 0;
+  border-radius: 999px;
+  padding: 4px 8px;
+  color: #245b76;
+  background: #dceffc;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.lesson-chip-box input {
+  flex: 1 1 120px;
+  min-width: 90px;
+  min-height: 28px;
+  border: 0;
+  padding: 0 4px;
+  background: transparent;
+}
+
+.lesson-chip-box input:focus {
+  outline: 0;
+}
+
+.lesson-menu-button {
+  min-height: 40px;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.lesson-option-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  border: 1px solid #d7e0ea;
+  border-radius: 8px;
+  padding: 8px;
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(43, 61, 79, 0.1);
+}
+
+.lesson-option-panel button {
+  border: 1px solid #c9d5df;
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: #31556f;
+  background: #f8fafc;
+  font-size: 0.82rem;
+  font-weight: 900;
+}
+
+.lesson-option-panel button.selected {
+  border-color: #167a5a;
+  color: #ffffff;
+  background: #167a5a;
+}
+
+@media (max-width: 760px) {
+  .lesson-entry-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dispatch-overview-panel {
+  display: grid;
+  gap: 12px;
+}
+
+.dispatch-overview-list {
+  display: grid;
+  gap: 10px;
+}
+
+.dispatch-overview-card {
+  display: grid;
+  gap: 10px;
+  border: 1px solid #d7e0ea;
+  border-radius: 8px;
+  padding: 12px;
+  background: #f8fafc;
+}
+
+.dispatch-overview-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dispatch-overview-main h3,
+.dispatch-overview-main p {
+  margin-bottom: 0;
+}
+
+.dispatch-overview-main p {
+  margin-top: 4px;
+  color: #657789;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.overview-homework-list,
+.overview-progress-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.overview-homework-list span {
+  border-radius: 999px;
+  padding: 6px 9px;
+  color: #31556f;
+  background: #e8f2f8;
+  font-size: 0.84rem;
+  font-weight: 900;
+}
+
+.overview-progress-row span {
+  border: 1px solid #d7e0ea;
+  border-radius: 7px;
+  padding: 7px 9px;
+  color: #405264;
+  background: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+@media (max-width: 760px) {
+  .dispatch-overview-main {
+    flex-direction: column;
   }
 }

@@ -25,13 +25,13 @@ const initialSubmissions: Submission[] = [
 ];
 
 const tabs: Array<{ id: ViewMode; label: string; icon: typeof ListChecks }> = [
-  { id: "student", label: "學生端", icon: ListChecks },
   { id: "teacher", label: "老師端", icon: ClipboardCheck },
+  { id: "student", label: "學生端", icon: ListChecks },
   { id: "parent", label: "家長端", icon: Home },
 ];
 
 export function App() {
-  const [viewMode, setViewMode] = useState<ViewMode>("student");
+  const [viewMode, setViewMode] = useState<ViewMode>("teacher");
   const [assignments, setAssignments] = useState<Assignment[]>(initialAssignments);
   const [submissions, setSubmissions] = useState<Submission[]>(initialSubmissions);
   const [studentStats, setStudentStats] = useState<StudentStats>({ seat: "08", classCode: "A", points: 14, streak: 4, pending: 1 });

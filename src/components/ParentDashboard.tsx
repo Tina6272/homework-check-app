@@ -32,10 +32,11 @@ export function ParentDashboard({ assignments, submissions, stats }: ParentDashb
 }
 
 function statusText(status: Submission["status"]) {
-  return { notStarted: "尚未開始", inProgress: "進行中", selfCheck: "自我檢查中", needsCorrection: "需要修正", teacherReview: "等待老師確認", done: "已完成", stuck: "卡住了" }[status];
+  return { notStarted: "尚未開始", inProgress: "進行中", selfCheck: "自我檢查中", needsCorrection: "需要修正", teacherReview: "等待老師確認", assistedDone: "已協助完成", done: "已完成", stuck: "卡住了" }[status];
 }
 
 function parentAdvice(submission: Submission) {
+  if (submission.status === "assistedDone") return "老師已在現場協助完成，回家只要確認孩子理解修正內容。";
   if (submission.status === "done") return "可以肯定孩子完成了自我檢查，簡短鼓勵即可。";
   if (submission.status === "teacherReview" || submission.stuckQuestions.length > 0) return "孩子有卡住的地方，請先鼓勵他說出哪一題不懂，再由老師確認。";
   if (submission.status === "needsCorrection") return "提醒孩子回到題目修正，不需要直接告訴答案。";

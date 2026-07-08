@@ -78,5 +78,6 @@ export function StudentPanel({ assignments, stats, submissions, onStudentChanged
 }
 
 function statusText(status: Submission["status"]) {
-  return { notStarted: "尚未開始", inProgress: "進行中", selfCheck: "自我檢查中", needsCorrection: "需要修正", teacherReview: "等待老師確認", done: "已完成", stuck: "卡住了" }[status];
+  return { notStarted: "尚未開始", inProgress: "進行中", selfCheck: "自我檢查中", needsCorrection: "需要修正", teacherReview: "等待老師確認", assistedDone: "已協助完成", done: "已完成", stuck: "卡住了" }[status];
 }
+
